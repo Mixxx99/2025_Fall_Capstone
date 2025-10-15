@@ -2,9 +2,13 @@ import SwiftUI
 
 @main
 struct TheSturgeWeberFoundationApp: App {
+    // Provide one shared EventStore to the entire app
+    @StateObject private var eventStore = EventStore.shared
+
     var body: some Scene {
         WindowGroup {
             RootRouter()
+                .environmentObject(eventStore)   // ✅ inject globally
         }
     }
 }
