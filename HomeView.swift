@@ -1,0 +1,181 @@
+import SwiftUI
+
+// MARK: - Reusable Tile Model
+struct HomeTile: Identifiable {
+    let id = UUID()
+    let title: String
+    let systemImage: String
+    let destination: AnyView
+}
+
+// MARK: - Main Home View
+struct HomeView: View {
+    @State private var username: String = "John Doe"
+
+    private let columns = [
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16)
+    ]
+
+    var body: some View {
+        ZStack {
+            // More transparent gradient background
+            LinearGradient(
+                colors: [
+                    Color.swfGreen.opacity(0.75),  // Reduced from 0.95 to 0.75
+                    Color.swfPortWine.opacity(0.75) // Reduced from 0.95 to 0.75
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    header
+                    grid
+                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 24)
+            }
+        }
+        .navigationTitle("Warrior University")
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarBackground(Color.swfGreen.opacity(0.95), for: .navigationBar) // Keep toolbar more opaque
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    print("Logout tapped")
+                } label: {
+                    Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
+                }
+                .foregroundStyle(.white)
+            }
+        }
+    }
+
+    // MARK: - Header
+    private var header: some View {
+        ZStack(alignment: .leading) {
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(Color.swfGreen.opacity(0.85)) // Slightly more transparent
+                .shadow(color: .black.opacity(0.25), radius: 8, y: 3)
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Welcome")
+                    .font(.callout)
+                    .foregroundStyle(.white.opacity(0.95))
+                Text(username)
+                    .font(.title2.bold())
+                    .foregroundStyle(.white)
+                Text("Your care, learning, and tools — all in one place.")
+                    .font(.subheadline)
+                    .foregroundStyle(.white.opacity(0.95))
+                    .minimumScaleFactor(0.7) // Allow text to scale down to 70% if needed
+                    .lineLimit(2) // Allow wrapping to 2 lines
+            }
+            .padding(16)
+        }
+        .frame(maxWidth: .infinity)
+        .fixedSize(horizontal: false, vertical: true) // Allow vertical expansion
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Welcome, \(username)")
+    }
+
+    // MARK: - Grid of Tiles
+    private var grid: some View {
+        LazyVGrid(columns: columns, spacing: 16) {
+            ForEach(tiles) { tile in
+                NavigationLink(destination: tile.destination) {
+                    TileView(title: tile.title, systemImage: tile.systemImage)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+
+    // MARK: - Tiles
+    private var tiles: [HomeTile] {
+        [
+            HomeTile(
+                title: "Calendar",
+                systemImage: "calendar",
+                destination: AnyView(CalendarRootView())
+            ),
+            HomeTile(
+                title: "Notes",
+                systemImage: "note.text",
+                destination: AnyView(NotesListView())
+            ),
+            HomeTile(
+                title: "Meds & Equipment",
+                systemImage: "cross.case",
+                destination: AnyView(MedsEquipmentListView())
+            ),
+            HomeTile(
+                title: "Doctor Info",
+                systemImage: "stethoscope",
+                destination: AnyView(DoctorListView())
+            ),
+            HomeTile(
+                title: "Analytics",
+                systemImage: "chart.bar",
+                destination: AnyView(AnalyticsView())
+            ),
+            HomeTile(
+                title: "Articles & Videos",
+                systemImage: "book.pages",
+                destination: AnyView(ArticlesVideosView())
+            ),
+            // ✅ Sprint 3: Timer feature added here
+            HomeTile(
+                title: "Timer",
+                systemImage: "timer",
+                destination: AnyView(TimerHubView())
+            )
+        ]
+    }
+}
+
+// MARK: - Tile View (glass card)
+struct TileView: View {
+    let title: String
+    let systemImage: String
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(.ultraThinMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .stroke(Color.white.opacity(0.15), lineWidth: 1)
+                )
+                .shadow(color: .black.opacity(0.25), radius: 8, y: 3)
+
+            VStack(spacing: 12) {
+                Image(systemName: systemImage)
+                    .font(.system(size: 36, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .frame(height: 48)
+                Text(title)
+                    .font(.subheadline.bold())
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 8)
+            }
+            .padding(16)
+        }
+        .frame(height: 140)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(title)
+    }
+}
+
+// MARK: - Canvas Preview
+#Preview {
+    NavigationStack {
+        HomeView()
+            .environmentObject(TimerStore.shared) // For Timer screens to work in preview
+    }
+}
