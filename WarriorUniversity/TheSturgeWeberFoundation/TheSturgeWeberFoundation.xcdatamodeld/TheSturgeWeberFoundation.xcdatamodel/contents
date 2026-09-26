@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24299" systemVersion="25A362" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="DoctorEntity" representedClassName="DoctorEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="specialty" optional="YES" attributeType="String"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="EventEntity" representedClassName="EventEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="tagColorHex" optional="YES" attributeType="String"/>
+        <attribute name="tagTitle" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="MedsEquipmentEntity" representedClassName="MedsEquipmentEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="alternativeBrands" optional="YES" attributeType="String"/>
+        <attribute name="alternateSources" optional="YES" attributeType="String"/>
+        <attribute name="associatedComponents" optional="YES" attributeType="String"/>
+        <attribute name="bottleDescription" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="datePrescribed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="datePurchased" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="doctorId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="dosage" optional="YES" attributeType="String"/>
+        <attribute name="equipmentNotes" optional="YES" attributeType="String"/>
+        <attribute name="equipmentProvider" optional="YES" attributeType="String"/>
+        <attribute name="expectedDeliveryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="expiryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="goodThroughDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="insuranceUsed" optional="YES" attributeType="String"/>
+        <attribute name="itemType" optional="YES" attributeType="String"/>
+        <attribute name="lastMaintenance" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastOrderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="loanedOrPurchased" optional="YES" attributeType="String"/>
+        <attribute name="maintenanceProvider" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="nextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="orderFrequency" optional="YES" attributeType="String"/>
+        <attribute name="orderQuantity" optional="YES" attributeType="String"/>
+        <attribute name="otherNames" optional="YES" attributeType="String"/>
+        <attribute name="preferredBrand" optional="YES" attributeType="String"/>
+        <attribute name="prescribingDoctor" optional="YES" attributeType="String"/>
+        <attribute name="reasonPrescribed" optional="YES" attributeType="String"/>
+        <attribute name="refillsRemaining" optional="YES" attributeType="String"/>
+        <attribute name="reminder1Day" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reminder1Week" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reminder2Weeks" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reminder3Days" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reminder5Days" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reminderDayOf" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="replacementAvailableOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="serialNumber" optional="YES" attributeType="String"/>
+        <attribute name="sideEffects" optional="YES" attributeType="String"/>
+        <attribute name="size" optional="YES" attributeType="String"/>
+        <attribute name="sku" optional="YES" attributeType="String"/>
+        <attribute name="sparePartsTools" optional="YES" attributeType="String"/>
+        <attribute name="specialInstructions" optional="YES" attributeType="String"/>
+        <attribute name="supplyCompany" optional="YES" attributeType="String"/>
+        <attribute name="supplyCompanyAddress" optional="YES" attributeType="String"/>
+        <attribute name="supplyCompanyPhone" optional="YES" attributeType="String"/>
+        <attribute name="supplyNotes" optional="YES" attributeType="String"/>
+        <attribute name="syncToCalendar" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="NoteEntity" representedClassName="NoteEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="attachmentPath" optional="YES" attributeType="String"/>
+        <attribute name="body" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="tagColorHex" optional="YES" attributeType="String"/>
+        <attribute name="tagTitle" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+    </entity>
+</model>
